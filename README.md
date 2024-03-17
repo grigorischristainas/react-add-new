@@ -1,6 +1,9 @@
 # react-add-new
 
-CLI tool to create new react components
+### ✨ CLI tool to create new react components
+
+A utility for quickly adding new React components. Not configurable for the moment, generates styles assuming you are using
+MUI and styled components.
 
 ## Usage
 
