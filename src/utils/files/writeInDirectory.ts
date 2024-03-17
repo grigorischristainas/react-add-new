@@ -5,13 +5,10 @@ import prettify from '../formatting/prettify'
 export const writeInDirectory = (
     folderPath: string,
     fileName: string,
-    componentName: string,
     extension: string,
-    template: string
+    content: string
 ) => {
     return new Promise(async (resolve, reject) => {
-        const content = template.replace(/COMPONENT_NAME/g, componentName)
-
         const prettifiedContent = await prettify(content)
 
         const filePath = path.join(folderPath, `${fileName}.${extension}`)

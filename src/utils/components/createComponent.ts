@@ -7,8 +7,14 @@ import componentTemplate from '../../templates/component'
 import indexTemplate from '../../templates'
 import typesTemplate from '../../templates/types'
 import stylesTemplate from '../../templates/styles'
+import formatContent from './formatContent'
 
-const createComponent = (componentName: string, relativeFolderPath: string) => {
+const createComponent = (
+    componentName: string,
+    relativeFolderPath: string,
+    withStyles: boolean,
+    withTypes: boolean
+) => {
     const currentDirectory = process.cwd()
     const targetDirectory = path.join(relativeFolderPath, componentName)
     const folderPath = path.join(currentDirectory, targetDirectory)
@@ -16,45 +22,54 @@ const createComponent = (componentName: string, relativeFolderPath: string) => {
     componentExists(folderPath)
         .then(() => createDirectory(folderPath))
         // Write component file
-        .then(() =>
-            writeInDirectory(
-                folderPath,
+        .then(() => {
+            const content = formatContent(
                 componentName,
-                componentName,
-                'tsx',
-                componentTemplate
+                componentTemplate,
+                withStyles,
+                withTypes
             )
-        )
+            return writeInDirectory(folderPath, componentName, 'tsx', content)
+        })
         // Write index file
-        .then(() =>
-            writeInDirectory(
-                folderPath,
-                'index',
+        .then(() => {
+            const content = formatContent(
                 componentName,
-                'ts',
-                indexTemplate
+                indexTemplate,
+                withStyles,
+                withTypes
             )
-        )
+            return writeInDirectory(folderPath, 'index', 'ts', content)
+        })
         // Write types file
-        .then(() =>
-            writeInDirectory(
-                folderPath,
-                'types',
-                componentName,
-                'ts',
-                typesTemplate
-            )
-        )
+        .then(() => {
+            if (withTypes) {
+                const content = formatContent(
+                    componentName,
+                    typesTemplate,
+                    withStyles,
+                    withTypes
+                )
+                return writeInDirectory(folderPath, 'types', 'ts', content)
+            }
+        })
         // Write styles file
-        .then(() =>
-            writeInDirectory(
-                folderPath,
-                `${componentName}Styles`,
-                componentName,
-                'ts',
-                stylesTemplate
-            )
-        )
+        .then(() => {
+            if (withStyles) {
+                const content = formatContent(
+                    componentName,
+                    stylesTemplate,
+                    withStyles,
+                    withTypes
+                )
+                return writeInDirectory(
+                    folderPath,
+                    `${componentName}Styles`,
+                    'ts',
+                    content
+                )
+            }
+        })
         // Log success message
         .then(() => logNewComponentSuccess())
         // Catch & log any errors

@@ -22,9 +22,11 @@ const initializeCommands = () => {
         .description('Generate new component ✨')
         .requiredOption('-n, --name <string>', 'name')
         .requiredOption('-p, --path <string>', 'path')
-        .action(({ path, name }) => {
+        .option('--withTypes', 'Add types', false)
+        .option('--withStyles', 'Add styles', false)
+        .action(({ path, name, withStyles, withTypes }) => {
             logNewComponentInit(name, path)
-            createComponent(name, path)
+            createComponent(name, path, withStyles, withTypes)
         })
 
     program.parse()
