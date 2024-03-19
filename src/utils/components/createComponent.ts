@@ -7,7 +7,7 @@ import componentTemplate from '../../templates/component'
 import indexTemplate from '../../templates'
 import typesTemplate from '../../templates/types'
 import stylesTemplate from '../../templates/styles'
-import formatContent from './formatContent'
+import replacePlaceholders from './replacePlaceholders'
 
 const createComponent = (
     componentName: string,
@@ -23,45 +23,49 @@ const createComponent = (
         .then(() => createDirectory(folderPath))
         // Write component file
         .then(() => {
-            const content = formatContent(
+            const content = replacePlaceholders(
                 componentName,
                 componentTemplate,
                 withStyles,
                 withTypes
             )
+
             return writeInDirectory(folderPath, componentName, 'tsx', content)
         })
         // Write index file
         .then(() => {
-            const content = formatContent(
+            const content = replacePlaceholders(
                 componentName,
                 indexTemplate,
                 withStyles,
                 withTypes
             )
+
             return writeInDirectory(folderPath, 'index', 'ts', content)
         })
         // Write types file
         .then(() => {
             if (withTypes) {
-                const content = formatContent(
+                const content = replacePlaceholders(
                     componentName,
                     typesTemplate,
                     withStyles,
                     withTypes
                 )
+
                 return writeInDirectory(folderPath, 'types', 'ts', content)
             }
         })
         // Write styles file
         .then(() => {
             if (withStyles) {
-                const content = formatContent(
+                const content = replacePlaceholders(
                     componentName,
                     stylesTemplate,
                     withStyles,
                     withTypes
                 )
+
                 return writeInDirectory(
                     folderPath,
                     `${componentName}Styles`,

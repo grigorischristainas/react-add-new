@@ -1,4 +1,4 @@
-const formatContent = (
+const replacePlaceholders = (
     componentName: string,
     template: string,
     withStyles: boolean,
@@ -28,4 +28,4 @@ const formatContent = (
     return content
 }
 
-export default formatContent
+export default replacePlaceholders
