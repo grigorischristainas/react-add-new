@@ -9,7 +9,7 @@ export const writeInDirectory = (
     content: string
 ) => {
     return new Promise(async (resolve, reject) => {
-        const prettifiedContent = await prettify(content)
+        const prettifiedContent = await prettify(content, folderPath)
 
         const filePath = path.join(folderPath, `${fileName}.${extension}`)
 
