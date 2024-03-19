@@ -12,7 +12,10 @@ const formatContent = (
                 ? `import { StyledRootContainer } from './${componentName}Styles'`
                 : ''
         )
-        .replace(/div/g, withStyles ? 'StyledRootContainer' : '')
+        .replace(
+            /COMPONENT_ELEMENT/g,
+            withStyles ? 'StyledRootContainer' : 'div'
+        )
         .replace(
             /WITH_TYPES_ADD_IMPORT/g,
             withTypes ? `import { ${componentName}Props } from './types'` : ''
