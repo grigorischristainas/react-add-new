@@ -9,7 +9,7 @@ import typesTemplate from '../../templates/types'
 import stylesTemplate from '../../templates/styles'
 import replacePlaceholders from './replacePlaceholders'
 
-const createComponent = (
+const createComponent = async (
     componentName: string,
     relativeFolderPath: string,
     noStyles: boolean,
@@ -19,65 +19,66 @@ const createComponent = (
     const targetDirectory = path.join(relativeFolderPath, componentName)
     const folderPath = path.join(currentDirectory, targetDirectory)
 
-    componentExists(folderPath)
-        .then(() => createDirectory(folderPath))
-        // Write component file
-        .then(() => {
-            const content = replacePlaceholders(
-                componentName,
-                componentTemplate,
-                noStyles,
-                noTypes
-            )
+    try {
+        await componentExists(folderPath)
+        await createDirectory(folderPath)
 
-            return writeInDirectory(folderPath, componentName, 'tsx', content)
-        })
-        // Write index file
-        .then(() => {
-            const content = replacePlaceholders(
-                componentName,
-                indexTemplate,
-                noStyles,
-                noTypes
-            )
+        const componentContent = replacePlaceholders(
+            componentName,
+            componentTemplate,
+            noStyles,
+            noTypes
+        )
 
-            return writeInDirectory(folderPath, 'index', 'ts', content)
-        })
-        // Write types file
-        .then(() => {
-            if (noTypes) return
+        await writeInDirectory(
+            folderPath,
+            componentName,
+            'tsx',
+            componentContent
+        )
 
-            const content = replacePlaceholders(
+        const indexContent = replacePlaceholders(
+            componentName,
+            indexTemplate,
+            noStyles,
+            noTypes
+        )
+
+        await writeInDirectory(folderPath, 'index', 'ts', indexContent)
+
+        if (!noTypes) {
+            const typesContent = replacePlaceholders(
                 componentName,
                 typesTemplate,
                 noStyles,
                 noTypes
             )
 
-            return writeInDirectory(folderPath, 'types', 'ts', content)
-        })
-        // Write styles file
-        .then(() => {
-            if (noStyles) return
+            await writeInDirectory(folderPath, 'types', 'ts', typesContent)
+        }
 
-            const content = replacePlaceholders(
+        if (!noStyles) {
+            const stylesContent = replacePlaceholders(
                 componentName,
                 stylesTemplate,
                 noStyles,
                 noTypes
             )
 
-            return writeInDirectory(
+            await writeInDirectory(
                 folderPath,
                 `${componentName}Styles`,
                 'ts',
-                content
+                stylesContent
             )
-        })
-        // Log success message
-        .then(() => logNewComponentSuccess())
-        // Catch & log any errors
-        .catch((err) => logError(err))
+        }
+
+        logNewComponentSuccess()
+    } catch (err) {
+        if (typeof err === 'string') {
+            logError(err)
+        }
+    }
 }
 
 export default createComponent
