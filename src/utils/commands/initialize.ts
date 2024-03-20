@@ -20,13 +20,16 @@ const initializeCommands = () => {
     program
         .command('component')
         .description('Generate new component ✨')
-        .requiredOption('-n, --name <string>', 'name')
-        .requiredOption('-p, --path <string>', 'path')
-        .option('--withTypes', 'Add types', false)
-        .option('--withStyles', 'Add styles', false)
-        .action(({ path, name, withStyles, withTypes }) => {
+        .requiredOption('-n, --name <string>', 'Component name')
+        .requiredOption(
+            '-p, --path <string>',
+            'Component path, relative to current command execution path'
+        )
+        .option('--noTypes', 'Exclude types file from generation', false)
+        .option('--noStyles', 'Exclude styles file from generation', false)
+        .action(({ path, name, noStyles, noTypes }) => {
             logNewComponentInit(name, path)
-            createComponent(name, path, withStyles, withTypes)
+            createComponent(name, path, noStyles, noTypes)
         })
 
     program.parse()

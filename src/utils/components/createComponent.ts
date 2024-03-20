@@ -12,8 +12,8 @@ import replacePlaceholders from './replacePlaceholders'
 const createComponent = (
     componentName: string,
     relativeFolderPath: string,
-    withStyles: boolean,
-    withTypes: boolean
+    noStyles: boolean,
+    noTypes: boolean
 ) => {
     const currentDirectory = process.cwd()
     const targetDirectory = path.join(relativeFolderPath, componentName)
@@ -26,8 +26,8 @@ const createComponent = (
             const content = replacePlaceholders(
                 componentName,
                 componentTemplate,
-                withStyles,
-                withTypes
+                noStyles,
+                noTypes
             )
 
             return writeInDirectory(folderPath, componentName, 'tsx', content)
@@ -37,42 +37,42 @@ const createComponent = (
             const content = replacePlaceholders(
                 componentName,
                 indexTemplate,
-                withStyles,
-                withTypes
+                noStyles,
+                noTypes
             )
 
             return writeInDirectory(folderPath, 'index', 'ts', content)
         })
         // Write types file
         .then(() => {
-            if (withTypes) {
-                const content = replacePlaceholders(
-                    componentName,
-                    typesTemplate,
-                    withStyles,
-                    withTypes
-                )
+            if (noTypes) return
 
-                return writeInDirectory(folderPath, 'types', 'ts', content)
-            }
+            const content = replacePlaceholders(
+                componentName,
+                typesTemplate,
+                noStyles,
+                noTypes
+            )
+
+            return writeInDirectory(folderPath, 'types', 'ts', content)
         })
         // Write styles file
         .then(() => {
-            if (withStyles) {
-                const content = replacePlaceholders(
-                    componentName,
-                    stylesTemplate,
-                    withStyles,
-                    withTypes
-                )
+            if (noStyles) return
 
-                return writeInDirectory(
-                    folderPath,
-                    `${componentName}Styles`,
-                    'ts',
-                    content
-                )
-            }
+            const content = replacePlaceholders(
+                componentName,
+                stylesTemplate,
+                noStyles,
+                noTypes
+            )
+
+            return writeInDirectory(
+                folderPath,
+                `${componentName}Styles`,
+                'ts',
+                content
+            )
         })
         // Log success message
         .then(() => logNewComponentSuccess())

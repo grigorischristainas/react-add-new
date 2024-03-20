@@ -1,28 +1,25 @@
 const replacePlaceholders = (
     componentName: string,
     template: string,
-    withStyles: boolean,
-    withTypes: boolean
+    noStyles: boolean,
+    noTypes: boolean
 ) => {
     const content = template
         .replace(/COMPONENT_NAME/g, componentName)
         .replace(
             /WITH_STYLES_ADD_IMPORT/g,
-            withStyles
-                ? `import { StyledRootContainer } from './${componentName}Styles'`
-                : ''
+            noStyles
+                ? ''
+                : `import { StyledRootContainer } from './${componentName}Styles'`
         )
-        .replace(
-            /COMPONENT_ELEMENT/g,
-            withStyles ? 'StyledRootContainer' : 'div'
-        )
+        .replace(/COMPONENT_ELEMENT/g, noStyles ? 'div' : 'StyledRootContainer')
         .replace(
             /WITH_TYPES_ADD_IMPORT/g,
-            withTypes ? `import { ${componentName}Props } from './types'` : ''
+            noTypes ? '' : `import { ${componentName}Props } from './types'`
         )
         .replace(
             /WITH_TYPES_ADD_DEFINITION/g,
-            withTypes ? `{}:  ${componentName}Props` : ''
+            noTypes ? '' : `{}:  ${componentName}Props`
         )
 
     return content
