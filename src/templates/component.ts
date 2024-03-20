@@ -1,4 +1,4 @@
-export default `import * as React from 'react'
+export default `import React from 'react'
 WITH_STYLES_ADD_IMPORT
 WITH_TYPES_ADD_IMPORT
 
