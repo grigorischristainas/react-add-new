@@ -1,9 +1,9 @@
 import * as fs from 'fs'
 
 export const createDirectory = (folderPath: string) => {
-    return new Promise((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
         fs.mkdir(folderPath, { recursive: true }, (err) =>
-            err ? reject(err) : resolve('success')
+            err ? reject(err.message) : resolve('success')
         )
     })
 }
