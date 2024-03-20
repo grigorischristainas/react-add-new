@@ -14,8 +14,13 @@ export const logNewComponentInit = (name: string, path: string) => {
     )
 }
 
-export const logError = (err: string) => {
-    console.log(chalk.red(err))
+export const logError = (err: string | unknown) => {
+    const errorToLog =
+        typeof err === 'string'
+            ? err
+            : 'Something went wrong during component generation, please try again.'
+
+    console.log(chalk.red(`\n${errorToLog}`))
 }
 
 export const logNewComponentSuccess = () => {

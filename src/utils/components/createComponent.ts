@@ -75,9 +75,7 @@ const createComponent = async (
 
         logNewComponentSuccess()
     } catch (err) {
-        if (typeof err === 'string') {
-            logError(err)
-        }
+        logError(err)
     }
 }
 
