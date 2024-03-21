@@ -19,7 +19,7 @@ const replacePlaceholders = (
         )
         .replace(
             /WITH_TYPES_ADD_DEFINITION/g,
-            noTypes ? '' : `{}:  ${componentName}Props`
+            noTypes ? '' : `{}: ${componentName}Props`
         )
 
     return content
