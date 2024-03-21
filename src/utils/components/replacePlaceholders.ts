@@ -7,10 +7,10 @@ const replacePlaceholders = (
     const content = template
         .replace(/COMPONENT_NAME/g, componentName)
         .replace(
-            /WITH_STYLES_ADD_IMPORT/g,
+            /WITH_STYLES_ADD_IMPORT\n?/g,
             noStyles
                 ? ''
-                : `import { StyledRootContainer } from './${componentName}Styles'`
+                : `import { StyledRootContainer } from './${componentName}Styles'\n`
         )
         .replace(/COMPONENT_ELEMENT/g, noStyles ? 'div' : 'StyledRootContainer')
         .replace(
