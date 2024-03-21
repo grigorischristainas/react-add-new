@@ -14,8 +14,8 @@ const replacePlaceholders = (
         )
         .replace(/COMPONENT_ELEMENT/g, noStyles ? 'div' : 'StyledRootContainer')
         .replace(
-            /WITH_TYPES_ADD_IMPORT/g,
-            noTypes ? '' : `import { ${componentName}Props } from './types'`
+            /WITH_TYPES_ADD_IMPORT\n?/g,
+            noTypes ? '' : `import { ${componentName}Props } from './types'\n`
         )
         .replace(
             /WITH_TYPES_ADD_DEFINITION/g,
