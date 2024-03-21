@@ -3,11 +3,7 @@ import componentExists from './componentExists'
 import createDirectory from '../files/createDirectory'
 import writeInDirectory from '../files/writeInDirectory'
 import { logError, logNewComponentSuccess } from '../logging/logger'
-import componentTemplate from '../../templates/component'
-import indexTemplate from '../../templates'
-import typesTemplate from '../../templates/types'
-import stylesTemplate from '../../templates/styles'
-import replacePlaceholders from './replacePlaceholders'
+import getTemplates from './getTemplates'
 
 const createComponent = async (
     componentName: string,
@@ -19,57 +15,31 @@ const createComponent = async (
     const targetDirectory = path.join(relativeFolderPath, componentName)
     const folderPath = path.join(currentDirectory, targetDirectory)
 
+    const templates = getTemplates(componentName, noStyles, noTypes)
+
     try {
         await componentExists(folderPath)
         await createDirectory(folderPath)
-
-        const componentContent = replacePlaceholders(
-            componentName,
-            componentTemplate,
-            noStyles,
-            noTypes
-        )
 
         await writeInDirectory(
             folderPath,
             componentName,
             'tsx',
-            componentContent
+            templates.component
         )
 
-        const indexContent = replacePlaceholders(
-            componentName,
-            indexTemplate,
-            noStyles,
-            noTypes
-        )
-
-        await writeInDirectory(folderPath, 'index', 'ts', indexContent)
+        await writeInDirectory(folderPath, 'index', 'ts', templates.index)
 
         if (!noTypes) {
-            const typesContent = replacePlaceholders(
-                componentName,
-                typesTemplate,
-                noStyles,
-                noTypes
-            )
-
-            await writeInDirectory(folderPath, 'types', 'ts', typesContent)
+            await writeInDirectory(folderPath, 'types', 'ts', templates.types)
         }
 
         if (!noStyles) {
-            const stylesContent = replacePlaceholders(
-                componentName,
-                stylesTemplate,
-                noStyles,
-                noTypes
-            )
-
             await writeInDirectory(
                 folderPath,
                 `${componentName}Styles`,
                 'ts',
-                stylesContent
+                templates.styles
             )
         }
 
