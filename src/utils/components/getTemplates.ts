@@ -1,7 +1,9 @@
-import componentTemplate from '../../templates/componentTemplate'
-import indexTemplate from '../../templates/indexTemplate'
-import typesTemplate from '../../templates/typesTemplate'
-import stylesTemplate from '../../templates/stylesTemplate'
+import {
+    componentTemplate,
+    indexTemplate,
+    stylesTemplate,
+    typesTemplate,
+} from '../../templates'
 import replacePlaceholders from './replacePlaceholders'
 
 export type TransformedTemplate = {

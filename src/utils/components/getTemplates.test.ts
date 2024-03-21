@@ -1,10 +1,12 @@
-import mockComponentTemplateBasic from '../../templates/mocks/mockComponentTemplateBasic'
-import mockComponentTemplateFull from '../../templates/mocks/mockComponentTemplateFull'
-import mockComponentTemplateNoStyles from '../../templates/mocks/mockComponentTemplateNoStyles'
-import mockComponentTemplateNoTypes from '../../templates/mocks/mockComponentTemplateNoTypes'
-import mockIndexTemplate from '../../templates/mocks/mockIndexTemplate'
-import mockStylesTemplate from '../../templates/mocks/mockStylesTemplate'
-import mockTypesTemplate from '../../templates/mocks/mockTypesTemplate'
+import {
+    mockComponentTemplateFull,
+    mockComponentTemplateBasic,
+    mockComponentTemplateNoStyles,
+    mockComponentTemplateNoTypes,
+    mockIndexTemplate,
+    mockStylesTemplate,
+    mockTypesTemplate,
+} from '../../templates/mocks'
 import getTemplates, { TransformedTemplate } from './getTemplates'
 
 describe('getTemplates: Test that util', () => {
