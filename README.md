@@ -22,10 +22,10 @@ npx react-add-new
 This command will print all the available CLI options. In order to create a new component you can use the following command:
 
 ```
-npx react-add-new component -n TestComponent -p components --withStyles --withTypes
+npx react-add-new component -n TestComponent -p components
 ```
 
-This will generate a directory `components`, relatively to the current directory from which the command is called, and will then add the corresponding component files. Arguments `--withStyles` and `--withTypes` are optional, if utilized then the component template will be modified accordingly to import styles & types.
+This will generate a directory `components`, relatively to the current directory from which the command is called, and will then add the corresponding component files. Arguments `--noStyles` and `--noTypes` are optional, if utilized then the component template will be modified accordingly to exclude styles & types from generation.
 
 ## Development
 
