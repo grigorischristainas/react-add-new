@@ -5,7 +5,8 @@
     "main": "dist/index.js",
     "scripts": {
         "test": "jest",
-        "build": "npx esbuild --bundle src/index.ts --platform=node --outfile=dist/index.js --packages=external",
+        "clean": "rimraf dist",
+        "build": "npm run clean && esbuild --bundle src/index.ts --platform=node --outfile=dist/index.js --packages=external",
         "prepublishOnly": "npm run build"
     },
     "author": "Grigorios Christainas",
@@ -15,7 +16,9 @@
         "@types/jest": "^29.5.12",
         "@types/node": "^20.11.27",
         "babel-jest": "^29.7.0",
+        "esbuild": "^0.20.2",
         "jest": "^29.7.0",
+        "rimraf": "^5.0.5",
         "ts-jest": "^29.1.2",
         "typescript": "^5.4.2"
     },
