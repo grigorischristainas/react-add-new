@@ -51,4 +51,17 @@ describe('Test the cli commands', () => {
                 'Happy coding 🎉\n'
         )
     })
+
+    it('should log error message if component exists', async () => {
+        const result = await cli(
+            `component -n ${componentName} -p ${sandboxDirName}`
+        )
+
+        expect(result.stdout).toEqual(
+            `✨ Generating new component ${componentName} in ./${sandboxDirName}...\n` +
+                '\n' +
+                'Looks like component already exists, please try deleting its directory and try again.' +
+                '\n'
+        )
+    })
 })
