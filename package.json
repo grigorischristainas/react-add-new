@@ -4,7 +4,7 @@
     "description": "A CLI tool to create new React components",
     "main": "dist/index.js",
     "scripts": {
-        "test": "jest",
+        "test": "jest --runInBand",
         "clean": "rimraf dist",
         "build": "npm run clean && esbuild --bundle src/index.ts --platform=node --outfile=dist/index.js --packages=external",
         "prepublishOnly": "npm run build"
