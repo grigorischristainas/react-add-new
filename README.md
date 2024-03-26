@@ -7,13 +7,19 @@ Material UI and styled components.
 
 ## Usage
 
-You can install the package using the following command:
+You can install the package globally using the following command:
 
 ```
-npm i react-add-new
+npm i -g react-add-new
 ```
 
 After successful installation, you can utilize the package using the following command:
+
+```
+react-add-new
+```
+
+Alternatively, you can install the package locally in a React project and then utilize it using the command:
 
 ```
 npx react-add-new
@@ -22,7 +28,7 @@ npx react-add-new
 This command will print all the available CLI options. In order to create a new component you can use the following command:
 
 ```
-npx react-add-new component -n TestComponent -p components
+react-add-new component -n TestComponent -p components
 ```
 
 This will generate a directory `components`, relatively to the current directory from which the command is called, and will then add the corresponding component files. Arguments `--noStyles` and `--noTypes` are optional, if utilized then the component template will be modified accordingly to exclude styles & types from generation.
