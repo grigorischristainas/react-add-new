@@ -1,6 +1,7 @@
 import { Command } from 'commander'
-import { logHi, logNewComponentInit } from '../logging/logger'
+import { logError, logHi, logNewComponentInit } from '../logging/logger'
 import createComponent from '../components/createComponent'
+import chalk from 'chalk'
 
 const initializeCommands = () => {
     const program = new Command()
@@ -31,6 +32,10 @@ const initializeCommands = () => {
             logNewComponentInit(name, path)
             createComponent(name, path, noStyles, noTypes)
         })
+
+    program.configureOutput({
+        outputError: (str, write) => write(chalk.red(`\n${str}`)),
+    })
 
     program.parse()
 }

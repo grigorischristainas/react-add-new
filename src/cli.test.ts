@@ -64,4 +64,18 @@ describe('Test the cli commands', () => {
                 '\n'
         )
     })
+
+    it('should log error message if no required arguments are passed', async () => {
+        const resultNoName = await cli(`component`)
+
+        expect(resultNoName.stderr).toEqual(
+            `\nerror: required option '-n, --name <string>' not specified\n`
+        )
+
+        const resultNoPath = await cli(`component -n Test`)
+
+        expect(resultNoPath.stderr).toEqual(
+            `\nerror: required option '-p, --path <string>' not specified\n`
+        )
+    })
 })
