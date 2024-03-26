@@ -1,9 +1,9 @@
 import { Command } from 'commander'
-import { logError, logHi, logNewComponentInit } from '../logging/logger'
+import { logHi, logNewComponentInit } from '../logging/logger'
 import createComponent from '../components/createComponent'
 import chalk from 'chalk'
 
-const initializeCommands = () => {
+const initialize = () => {
     const program = new Command()
 
     program
@@ -40,4 +40,4 @@ const initializeCommands = () => {
     program.parse()
 }
 
-export default initializeCommands
+export default initialize
