@@ -4,6 +4,7 @@ import createDirectory from '../files/createDirectory'
 import writeInDirectory from '../files/writeInDirectory'
 import { logError, logNewComponentSuccess } from '../logging/logger'
 import getTemplates from './getTemplates'
+import getFileNames from './getFileNames'
 
 const createComponent = async (
     componentName: string,
@@ -16,6 +17,7 @@ const createComponent = async (
     const folderPath = path.join(currentDirectory, targetDirectory)
 
     const templates = getTemplates(componentName, noStyles, noTypes)
+    const fileNames = getFileNames(componentName)
 
     try {
         await componentExists(folderPath)
@@ -23,22 +25,20 @@ const createComponent = async (
 
         await writeInDirectory(
             folderPath,
-            componentName,
-            'tsx',
+            fileNames.component,
             templates.component
         )
 
-        await writeInDirectory(folderPath, 'index', 'ts', templates.index)
+        await writeInDirectory(folderPath, fileNames.index, templates.index)
 
         if (!noTypes) {
-            await writeInDirectory(folderPath, 'types', 'ts', templates.types)
+            await writeInDirectory(folderPath, fileNames.types, templates.types)
         }
 
         if (!noStyles) {
             await writeInDirectory(
                 folderPath,
-                `${componentName}Styles`,
-                'ts',
+                fileNames.styles,
                 templates.styles
             )
         }
