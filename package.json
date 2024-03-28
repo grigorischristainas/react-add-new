@@ -1,6 +1,6 @@
 {
     "name": "react-add-new",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A CLI tool to create new React components",
     "main": "dist/index.js",
     "scripts": {
