@@ -6,7 +6,7 @@ export const logHi = () => {
 
 export const logNewComponentInit = (name: string, path: string) => {
     console.log(
-        chalk.cyan(`✨ Generating new component `) +
+        chalk.cyan(`\n✨ Generating new component `) +
             chalk.magenta.bold(`${name} `) +
             chalk.cyan('in ') +
             chalk.magenta.bold(`./${path}`) +
