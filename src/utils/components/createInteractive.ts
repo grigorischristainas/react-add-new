@@ -10,6 +10,8 @@ type Answer = {
 }
 
 const createInteractive = () => {
+    inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
+
     inquirer
         .prompt([
             {
@@ -17,8 +19,15 @@ const createInteractive = () => {
                 message: 'What is your component name?',
             },
             {
+                type: 'fuzzypath',
                 name: 'path',
-                message: 'What is your desired path? (./)',
+                excludePath: (nodePath: string) =>
+                    nodePath.startsWith('node_modules') ||
+                    nodePath.startsWith('dist'),
+                excludeFilter: (nodePath: string) => nodePath.startsWith('.'),
+                message: 'Select a target directory for your component:',
+                suggestOnly: true,
+                depthLimit: 5,
             },
             {
                 name: 'withStyles',
