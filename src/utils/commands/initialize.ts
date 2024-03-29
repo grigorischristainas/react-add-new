@@ -1,7 +1,7 @@
 import { Command } from 'commander'
-import { logHi, logNewComponentInit } from '../logging/logger'
-import createComponent from '../components/createComponent'
+import { logHi } from '../logging/logger'
 import chalk from 'chalk'
+import handleComponentCreation from '../components/handleComponentCreation'
 
 const initialize = () => {
     const program = new Command()
@@ -21,16 +21,34 @@ const initialize = () => {
     program
         .command('component')
         .description('Generate new component ✨')
-        .requiredOption('-n, --name <string>', 'Component name')
-        .requiredOption(
+        .option('-n, --name <string>', 'Component name [non-interactive mode]')
+        .option(
             '-p, --path <string>',
-            'Component path, relative to current command execution path'
+            'Component path, relative to current command execution path [non-interactive mode]'
         )
-        .option('--noTypes', 'Exclude types file from generation', false)
-        .option('--noStyles', 'Exclude styles file from generation', false)
-        .action(({ path, name, noStyles, noTypes }) => {
-            logNewComponentInit(name, path)
-            createComponent(name, path, noStyles, noTypes)
+        .option(
+            '--noTypes',
+            'Exclude types file from generation [non-interactive mode]',
+            false
+        )
+        .option(
+            '--noStyles',
+            'Exclude styles file from generation [non-interactive mode]',
+            false
+        )
+        .option(
+            '-i, --interactive',
+            'Enter interactive mode, all other arguments are ignored.'
+        )
+        .action(({ path, name, noStyles, noTypes, interactive }) => {
+            handleComponentCreation({
+                name,
+                path,
+                noStyles,
+                noTypes,
+                interactive,
+                program,
+            })
         })
 
     program.configureOutput({
