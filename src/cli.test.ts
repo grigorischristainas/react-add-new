@@ -6,6 +6,10 @@ import {
     targetDirectory,
 } from './utils/components/mocks'
 
+jest.mock('inquirer')
+
+jest.setTimeout(10000)
+
 const cli = (args: string) => {
     return new Promise<{
         code: number
@@ -44,7 +48,7 @@ describe('Test the cli commands', () => {
         )
 
         expect(result.stdout).toEqual(
-            `✨ Generating new component ${componentName} in ./${sandboxDirName}...\n` +
+            `\n✨ Generating new component ${componentName} in ./${sandboxDirName}...\n` +
                 '\n' +
                 'Component has been successfully created!\n' +
                 '\n' +
@@ -58,7 +62,7 @@ describe('Test the cli commands', () => {
         )
 
         expect(result.stdout).toEqual(
-            `✨ Generating new component ${componentName} in ./${sandboxDirName}...\n` +
+            `\n✨ Generating new component ${componentName} in ./${sandboxDirName}...\n` +
                 '\n' +
                 'Looks like component already exists, please try deleting its directory and try again.' +
                 '\n'
@@ -69,13 +73,13 @@ describe('Test the cli commands', () => {
         const resultNoName = await cli(`component`)
 
         expect(resultNoName.stderr).toEqual(
-            `\nerror: required option '-n, --name <string>' not specified\n`
+            `\nPlease provide command line arguments or -i option for entering interactive mode. For help please run command with -h argument.\n`
         )
 
         const resultNoPath = await cli(`component -n Test`)
 
         expect(resultNoPath.stderr).toEqual(
-            `\nerror: required option '-p, --path <string>' not specified\n`
+            `\nPlease provide command line arguments or -i option for entering interactive mode. For help please run command with -h argument.\n`
         )
     })
 })
