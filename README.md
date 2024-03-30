@@ -19,19 +19,33 @@ After successful installation, you can utilize the package using the following c
 react-add-new
 ```
 
-Alternatively, you can install the package locally in a React project and then utilize it using the command:
+Alternatively, you can utilize it using the command:
 
 ```
 npx react-add-new
 ```
 
-This command will print all the available CLI options. In order to create a new component you can use the following command:
+This command will print all the available CLI options. A new component can be created using either interactive mode or command arguments.
+
+#### Interactive mode
+
+You can enter interactive mode using the following command:
+
+```
+react-add-new component -i
+```
+
+Terminal prompts will guide you through the component generation process. Please note that when `-i` command line argument is provided, all other arguments are ignored 🙃.
+
+#### Non-interactive mode
+
+You can create a component directly in non-interactive mode using the following command:
 
 ```
 react-add-new component -n TestComponent -p components
 ```
 
-This will generate a directory `components`, relatively to the current directory from which the command is called, and will then add the corresponding component files. Arguments `--noStyles` and `--noTypes` are optional, if utilized then the component template will be modified accordingly to exclude styles & types from generation.
+You can also provide the oprional arguments `--noStyles` and `--noTypes`, in order to exclude styles & types from generation.
 
 ## Development
 
@@ -39,4 +53,5 @@ This will generate a directory `components`, relatively to the current directory
 2. Run the command `npm install` to install required dependencies.
 3. After making desired changes, use the commands `npm build` & `npm pack` to create a local package file (e.g. `react-add-new-1.0.0.tgz`)
 4. Create a test React project.
-5. Copy the `.tgz` file into the React test project directory and run `npm i ./react-add-new-1.0.0.tgz`.
+5. Copy the `.tgz` file into the React test project directory and run `npm i ./react-add-new-1.0.0.tgz --save-dev`.
+6. Say hi (`npx react-add-new hi`) and expect a friendly greeting 😺
