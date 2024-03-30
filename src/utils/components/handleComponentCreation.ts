@@ -4,15 +4,15 @@ import createComponent from './createComponent'
 import createInteractive from './createInteractive'
 
 export type HandleComponentCreationProps = {
-    path: string
-    name: string
+    path: string | undefined
+    name: string | undefined
     noStyles: boolean
     noTypes: boolean
-    interactive: boolean
+    interactive: boolean | undefined
     program: Command
 }
 
-const handleComponentCreation = ({
+const handleComponentCreation = async ({
     path,
     name,
     noStyles,
@@ -20,18 +20,20 @@ const handleComponentCreation = ({
     interactive,
     program,
 }: HandleComponentCreationProps) => {
-    if ((!path || !name) && !interactive) {
-        program.error(
-            'Please provide command line arguments or -i option for entering interactive mode. For help please run command with -h argument.'
-        )
+    if (interactive) {
+        await createInteractive()
+        return
     }
 
-    if (interactive) {
-        createInteractive()
-    } else {
+    if (name && path) {
         logNewComponentInit(name, path)
-        createComponent(name, path, noStyles, noTypes)
+        await createComponent(name, path, noStyles, noTypes)
+        return
     }
+
+    program.error(
+        'Please provide command line arguments or -i option for entering interactive mode. For help please run command with -h argument.'
+    )
 }
 
 export default handleComponentCreation
