@@ -20,7 +20,7 @@ import {
     mockStylesTemplate,
     mockTypesTemplate,
 } from '../../templates/mocks'
-import inquirer, { Answers } from 'inquirer'
+import inquirer from 'inquirer'
 
 const consoleLogMock = jest.spyOn(console, 'log').mockImplementation()
 
