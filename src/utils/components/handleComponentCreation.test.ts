@@ -2,6 +2,7 @@ import { Command } from 'commander'
 import handleComponentCreation from './handleComponentCreation'
 import createInteractive from './createInteractive'
 import createComponent from './createComponent'
+import { componentName, sandboxDirName } from './mocks'
 
 jest.spyOn(console, 'log').mockImplementation()
 
@@ -23,8 +24,8 @@ describe('handleComponentCreation: Test that util', () => {
         const mockedProgram = jest.mocked(newProgram)
 
         handleComponentCreation({
-            path: '',
-            name: '',
+            path: undefined,
+            name: undefined,
             interactive: false,
             noStyles: false,
             noTypes: false,
@@ -43,8 +44,8 @@ describe('handleComponentCreation: Test that util', () => {
         const mockedProgram = jest.mocked(newProgram)
 
         handleComponentCreation({
-            path: '',
-            name: '',
+            path: undefined,
+            name: undefined,
             interactive: true,
             noStyles: false,
             noTypes: false,
@@ -60,8 +61,8 @@ describe('handleComponentCreation: Test that util', () => {
         const mockedProgram = jest.mocked(newProgram)
 
         handleComponentCreation({
-            path: 'test',
-            name: 'test',
+            path: sandboxDirName,
+            name: componentName,
             interactive: false,
             noStyles: false,
             noTypes: false,
