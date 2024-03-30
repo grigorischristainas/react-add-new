@@ -1,5 +1,4 @@
 import * as fs from 'fs'
-import * as path from 'path'
 import {
     mockComponentTemplateBasic,
     mockComponentTemplateFull,
@@ -113,7 +112,9 @@ describe('createComponent: Test that util', () => {
             )
         })
 
-        it('should create files correctly with correct content', () => {
+        it('should create files correctly with correct content', async () => {
+            await createComponent(componentName, sandboxDirName, true, false)
+
             expect(
                 fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
@@ -172,7 +173,9 @@ describe('createComponent: Test that util', () => {
             )
         })
 
-        it('should create files correctly with correct content', () => {
+        it('should create files correctly with correct content', async () => {
+            await createComponent(componentName, sandboxDirName, false, true)
+
             expect(
                 fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
@@ -231,7 +234,9 @@ describe('createComponent: Test that util', () => {
             )
         })
 
-        it('should create files correctly with correct content', () => {
+        it('should create files correctly with correct content', async () => {
+            await createComponent(componentName, sandboxDirName, true, true)
+
             expect(
                 fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
