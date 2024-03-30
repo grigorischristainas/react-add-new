@@ -23,6 +23,7 @@
     "devDependencies": {
         "@babel/preset-env": "^7.24.3",
         "@types/inquirer": "^9.0.7",
+        "@types/inquirer-fuzzy-path": "^2.3.9",
         "@types/jest": "^29.5.12",
         "@types/node": "^20.11.27",
         "babel-jest": "^29.7.0",
@@ -37,7 +38,6 @@
         "react-add-new": "./dist/index.js"
     },
     "dependencies": {
-        "@types/inquirer-fuzzy-path": "^2.3.9",
         "chalk": "^4.1.2",
         "commander": "^11.1.0",
         "inquirer": "^8.2.6",
