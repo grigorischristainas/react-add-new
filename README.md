@@ -1,8 +1,8 @@
 # react-add-new
 
-### ✨ CLI tool to create new react components
+### ✨ CLI tool to create new React components
 
-A utility for quickly adding new React components. Not configurable for the moment, generates styles assuming you are using
+A utility for quickly adding new React components. Not configurable for the moment, utilizes predefined templates and styles are generated assuming you are using
 Material UI and styled components.
 
 ## Usage
@@ -35,7 +35,13 @@ You can enter interactive mode using the following command:
 react-add-new component -i
 ```
 
-Terminal prompts will guide you through the component generation process. Please note that when `-i` command line argument is provided, all other arguments are ignored 🙃.
+Terminal prompts will guide you through the component generation process. Component generation path is selected using fuzzy search and you can set the desired depth for limiting the depth of sub-folders to scan:
+
+```
+react-add-new component -i --depthLimit 10
+```
+
+Please note that when `-i` command line argument is provided, non-interactive mode arguments are ignored 🙃.
 
 #### Non-interactive mode
 
