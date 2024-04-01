@@ -9,6 +9,7 @@ export type HandleComponentCreationProps = {
     noStyles: boolean
     noTypes: boolean
     interactive: boolean | undefined
+    depthLimit: number | undefined
     program: Command
 }
 
@@ -18,10 +19,11 @@ const handleComponentCreation = async ({
     noStyles,
     noTypes,
     interactive,
+    depthLimit,
     program,
 }: HandleComponentCreationProps) => {
     if (interactive) {
-        await createInteractive()
+        await createInteractive(depthLimit)
         return
     }
 

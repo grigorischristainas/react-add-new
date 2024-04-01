@@ -1,6 +1,8 @@
 import * as path from 'path'
 import * as fs from 'fs'
 
+export const depthLimit = undefined
+
 export const componentName = 'TestComponent'
 
 export const indexFilename = 'index.ts'

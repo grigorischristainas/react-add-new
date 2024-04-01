@@ -2,7 +2,7 @@ import { Command } from 'commander'
 import handleComponentCreation from './handleComponentCreation'
 import createInteractive from './createInteractive'
 import createComponent from './createComponent'
-import { componentName, sandboxDirName } from './mocks'
+import { componentName, depthLimit, sandboxDirName } from './mocks'
 
 jest.spyOn(console, 'log').mockImplementation()
 
@@ -29,6 +29,7 @@ describe('handleComponentCreation: Test that util', () => {
             interactive: false,
             noStyles: false,
             noTypes: false,
+            depthLimit: depthLimit,
             program: mockedProgram,
         })
 
@@ -49,6 +50,7 @@ describe('handleComponentCreation: Test that util', () => {
             interactive: true,
             noStyles: false,
             noTypes: false,
+            depthLimit: depthLimit,
             program: mockedProgram,
         })
 
@@ -66,6 +68,7 @@ describe('handleComponentCreation: Test that util', () => {
             interactive: false,
             noStyles: false,
             noTypes: false,
+            depthLimit: depthLimit,
             program: mockedProgram,
         })
 

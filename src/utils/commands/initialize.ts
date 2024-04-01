@@ -2,6 +2,7 @@ import { Command } from 'commander'
 import { logHi } from '../logging/logger'
 import chalk from 'chalk'
 import handleComponentCreation from '../components/handleComponentCreation'
+import depthLimitParser from './depthLimitParser'
 
 const initialize = () => {
     const program = new Command()
@@ -38,18 +39,33 @@ const initialize = () => {
         )
         .option(
             '-i, --interactive',
-            'Enter interactive mode, all other arguments are ignored.'
+            'Enter interactive mode, all other arguments are ignored.',
+            false
         )
-        .action(({ path, name, noStyles, noTypes, interactive }) => {
-            handleComponentCreation({
-                name,
-                path,
-                noStyles,
-                noTypes,
-                interactive,
-                program,
-            })
-        })
+        .option(
+            '-depthLimit, --depthLimit <number>',
+            'Maximum directory depth limit to search for providing component path generation options [interactive mode]',
+            depthLimitParser
+        )
+        .action(
+            ({ path, name, noStyles, noTypes, interactive, depthLimit }) => {
+                if (depthLimit !== undefined && isNaN(depthLimit)) {
+                    program.error(
+                        'Please provide a valid argument for depth limit'
+                    )
+                }
+
+                handleComponentCreation({
+                    name,
+                    path,
+                    noStyles,
+                    noTypes,
+                    interactive,
+                    depthLimit,
+                    program,
+                })
+            }
+        )
 
     program.configureOutput({
         outputError: (str, write) => write(chalk.red(`\n${str}`)),

@@ -82,4 +82,12 @@ describe('Test the cli commands', () => {
             `\nPlease provide command line arguments or -i option for entering interactive mode. For help please run command with -h argument.\n`
         )
     })
+
+    it('should log error message if incorrect depthLimit argument is passed', async () => {
+        const resultDepthLimit = await cli(`component -i --depthLimit test`)
+
+        expect(resultDepthLimit.stderr).toEqual(
+            `\nPlease provide a valid argument for depth limit\n`
+        )
+    })
 })

@@ -9,7 +9,7 @@ type Answer = {
     withTypes: boolean
 }
 
-const createInteractive = async () => {
+const createInteractive = async (depthLimit: number | undefined) => {
     inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
     try {
         const { name, path, withStyles, withTypes }: Answer =
@@ -28,7 +28,8 @@ const createInteractive = async () => {
                         nodePath.startsWith('.'),
                     message: 'Select a target directory for your component:',
                     suggestOnly: true,
-                    depthLimit: 5,
+                    depthLimit: depthLimit,
+                    itemType: 'directory',
                 },
                 {
                     name: 'withStyles',
