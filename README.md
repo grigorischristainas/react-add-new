@@ -35,10 +35,10 @@ You can enter interactive mode using the following command:
 react-add-new component -i
 ```
 
-Terminal prompts will guide you through the component generation process. Component generation path is selected using fuzzy search and you can set the desired depth for limiting the depth of sub-folders to scan:
+Terminal prompts will guide you through the component generation process. Component generation path is selected using fuzzy search and you can set the desired depth & path for limiting the depth and root path of sub-folders to scan:
 
 ```
-react-add-new component -i --depthLimit 10
+react-add-new component -i --depthLimit 10 --rootPath src
 ```
 
 Please note that when `-i` command line argument is provided, non-interactive mode arguments are ignored 🙃.
