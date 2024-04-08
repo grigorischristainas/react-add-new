@@ -55,9 +55,9 @@ You can also provide the oprional arguments `--noStyles` and `--noTypes`, in ord
 
 ## Development
 
-1. Download the project code.
-2. Run the command `npm install` to install required dependencies.
+1. Download the project code
+2. Run the command `npm install` to install required dependencies
 3. After making desired changes, use the commands `npm build` & `npm pack` to create a local package file (e.g. `react-add-new-1.0.0.tgz`)
-4. Create a test React project.
-5. Copy the `.tgz` file into the React test project directory and run `npm i ./react-add-new-1.0.0.tgz --save-dev`.
+4. Create a test React project
+5. Copy the `.tgz` file into the React test project directory and run `npm i ./react-add-new-1.0.0.tgz --save-dev`
 6. Say hi (`npx react-add-new hi`) and expect a friendly greeting 😺
