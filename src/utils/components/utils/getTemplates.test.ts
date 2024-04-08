@@ -6,7 +6,7 @@ import {
     mockIndexTemplate,
     mockStylesTemplate,
     mockTypesTemplate,
-} from '../../templates/mocks'
+} from '../../../templates/mocks'
 import getTemplates, { TransformedTemplate } from './getTemplates'
 
 describe('getTemplates: Test that util', () => {

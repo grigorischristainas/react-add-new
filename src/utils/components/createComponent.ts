@@ -1,10 +1,10 @@
 import * as path from 'path'
-import componentExists from './componentExists'
+import componentExists from './utils/componentExists'
 import createDirectory from '../files/createDirectory'
 import writeInDirectory from '../files/writeInDirectory'
 import { logError, logNewComponentSuccess } from '../logging/logger'
-import getTemplates from './getTemplates'
-import getFileNames from './getFileNames'
+import getTemplates from './utils/getTemplates'
+import getFileNames from './utils/getFileNames'
 
 const createComponent = async (
     componentName: string,

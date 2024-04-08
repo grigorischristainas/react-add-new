@@ -3,7 +3,7 @@ import {
     indexTemplate,
     stylesTemplate,
     typesTemplate,
-} from '../../templates'
+} from '../../../templates'
 import replacePlaceholders from './replacePlaceholders'
 
 export type TransformedTemplate = {
