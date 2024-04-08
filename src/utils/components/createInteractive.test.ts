@@ -11,6 +11,7 @@ import {
     stylesFilePath,
     typesPath,
     depthLimit,
+    rootPath,
 } from './mocks'
 import {
     mockComponentTemplateBasic,
@@ -59,7 +60,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log successful messages', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(2)
 
@@ -94,7 +95,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log error message when trying to create component in existing directory', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(1)
 
@@ -129,7 +130,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log successful messages', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(2)
 
@@ -162,7 +163,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log error message when trying to create component in existing directory', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(1)
 
@@ -197,7 +198,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log successful messages', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(2)
 
@@ -211,7 +212,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should create files correctly with correct content', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(
                 fileContainsContent(indexFilePath, mockIndexTemplate)
@@ -232,7 +233,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log error message when trying to create component in existing directory', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(1)
 
@@ -267,7 +268,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log successful messages', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(2)
 
@@ -281,7 +282,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should create files correctly with correct content', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(
                 fileContainsContent(indexFilePath, mockIndexTemplate)
@@ -300,7 +301,7 @@ describe('createInteractive: Test that util', () => {
         })
 
         it('should log error message when trying to create component in existing directory', async () => {
-            await createInteractive(depthLimit)
+            await createInteractive(depthLimit, rootPath)
 
             expect(consoleLogMock).toHaveBeenCalledTimes(1)
 

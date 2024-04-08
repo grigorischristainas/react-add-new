@@ -47,8 +47,21 @@ const initialize = () => {
             'Maximum directory depth limit to search for providing component path generation options [interactive mode]',
             depthLimitParser
         )
+        .option(
+            '-rootPath, --rootPath <string>',
+            'Root search directory e.g., src/',
+            undefined
+        )
         .action(
-            ({ path, name, noStyles, noTypes, interactive, depthLimit }) => {
+            ({
+                path,
+                name,
+                noStyles,
+                noTypes,
+                interactive,
+                depthLimit,
+                rootPath,
+            }) => {
                 if (depthLimit !== undefined && isNaN(depthLimit)) {
                     program.error(
                         'Please provide a valid argument for depth limit'
@@ -63,6 +76,7 @@ const initialize = () => {
                     interactive,
                     depthLimit,
                     program,
+                    rootPath,
                 })
             }
         )

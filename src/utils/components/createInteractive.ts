@@ -9,7 +9,10 @@ type Answer = {
     withTypes: boolean
 }
 
-const createInteractive = async (depthLimit: number | undefined) => {
+const createInteractive = async (
+    depthLimit: number | undefined,
+    rootPath: string | undefined
+) => {
     inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'))
     try {
         const { name, path, withStyles, withTypes }: Answer =
@@ -30,6 +33,7 @@ const createInteractive = async (depthLimit: number | undefined) => {
                     suggestOnly: true,
                     depthLimit: depthLimit,
                     itemType: 'directory',
+                    rootPath: rootPath,
                 },
                 {
                     name: 'withStyles',

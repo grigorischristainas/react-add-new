@@ -2,7 +2,7 @@ import { Command } from 'commander'
 import handleComponentCreation from './handleComponentCreation'
 import createInteractive from './createInteractive'
 import createComponent from './createComponent'
-import { componentName, depthLimit, sandboxDirName } from './mocks'
+import { componentName, depthLimit, sandboxDirName, rootPath } from './mocks'
 
 jest.spyOn(console, 'log').mockImplementation()
 
@@ -29,8 +29,9 @@ describe('handleComponentCreation: Test that util', () => {
             interactive: false,
             noStyles: false,
             noTypes: false,
-            depthLimit: depthLimit,
+            depthLimit,
             program: mockedProgram,
+            rootPath,
         })
 
         expect(mockedProgram.error).toHaveBeenCalledTimes(1)
@@ -50,8 +51,9 @@ describe('handleComponentCreation: Test that util', () => {
             interactive: true,
             noStyles: false,
             noTypes: false,
-            depthLimit: depthLimit,
+            depthLimit,
             program: mockedProgram,
+            rootPath,
         })
 
         expect(mockedProgram.error).not.toHaveBeenCalled()
@@ -68,8 +70,9 @@ describe('handleComponentCreation: Test that util', () => {
             interactive: false,
             noStyles: false,
             noTypes: false,
-            depthLimit: depthLimit,
+            depthLimit,
             program: mockedProgram,
+            rootPath,
         })
 
         expect(mockedProgram.error).not.toHaveBeenCalled()

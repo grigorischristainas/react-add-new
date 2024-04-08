@@ -11,6 +11,7 @@ export type HandleComponentCreationProps = {
     interactive: boolean | undefined
     depthLimit: number | undefined
     program: Command
+    rootPath: string | undefined
 }
 
 const handleComponentCreation = async ({
@@ -21,9 +22,10 @@ const handleComponentCreation = async ({
     interactive,
     depthLimit,
     program,
+    rootPath,
 }: HandleComponentCreationProps) => {
     if (interactive) {
-        await createInteractive(depthLimit)
+        await createInteractive(depthLimit, rootPath)
         return
     }
 
