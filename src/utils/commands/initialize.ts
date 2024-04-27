@@ -3,6 +3,7 @@ import { logHi } from '../logging/logger'
 import chalk from 'chalk'
 import handleComponentCreation from '../components/handleComponentCreation'
 import depthLimitParser from './depthLimitParser'
+import handleContextCreation from '../context/handleContextCreation'
 
 const initialize = () => {
     const program = new Command()
@@ -80,6 +81,44 @@ const initialize = () => {
                 })
             }
         )
+
+    program
+        .command('context')
+        .description('Generate new context ✨')
+        .option('-n, --name <string>', 'Context name [non-interactive mode]')
+        .option(
+            '-p, --path <string>',
+            'Context path, relative to current command execution path [non-interactive mode]'
+        )
+        .option(
+            '-i, --interactive',
+            'Enter interactive mode, all other arguments are ignored.',
+            false
+        )
+        .option(
+            '-depthLimit, --depthLimit <number>',
+            'Maximum directory depth limit to search for providing component path generation options [interactive mode]',
+            depthLimitParser
+        )
+        .option(
+            '-rootPath, --rootPath <string>',
+            'Root search directory e.g., src/',
+            undefined
+        )
+        .action(({ path, name, interactive, depthLimit, rootPath }) => {
+            if (depthLimit !== undefined && isNaN(depthLimit)) {
+                program.error('Please provide a valid argument for depth limit')
+            }
+
+            handleContextCreation({
+                name,
+                path,
+                interactive,
+                depthLimit,
+                program,
+                rootPath,
+            })
+        })
 
     program.configureOutput({
         outputError: (str, write) => write(chalk.red(`\n${str}`)),

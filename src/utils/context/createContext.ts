@@ -6,22 +6,15 @@ import { logError, logNewComponentSuccess } from '../logging/logger'
 import getTemplates from '../files/getTemplates'
 import getFileNames from '../files/getFileNames'
 
-const createComponent = async (
+const createContext = async (
     componentName: string,
-    relativeFolderPath: string,
-    noStyles: boolean,
-    noTypes: boolean
+    relativeFolderPath: string
 ) => {
     const currentDirectory = process.cwd()
     const targetDirectory = path.join(relativeFolderPath, componentName)
     const folderPath = path.join(currentDirectory, targetDirectory)
 
-    const templates = getTemplates(
-        componentName,
-        'component',
-        noStyles,
-        noTypes
-    )
+    const templates = getTemplates(componentName, 'context')
     const fileNames = getFileNames(componentName)
 
     try {
@@ -36,22 +29,12 @@ const createComponent = async (
 
         await writeInDirectory(folderPath, fileNames.index, templates.index)
 
-        if (!noTypes) {
-            await writeInDirectory(folderPath, fileNames.types, templates.types)
-        }
+        await writeInDirectory(folderPath, fileNames.types, templates.types)
 
-        if (!noStyles) {
-            await writeInDirectory(
-                folderPath,
-                fileNames.styles,
-                templates.styles
-            )
-        }
-
-        logNewComponentSuccess()
+        logNewComponentSuccess('context')
     } catch (err) {
         logError(err)
     }
 }
 
-export default createComponent
+export default createContext
