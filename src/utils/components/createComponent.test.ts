@@ -19,7 +19,7 @@ import {
     indexFilePath,
     stylesFilePath,
     typesPath,
-} from './mocks'
+} from '../../lib/mocks'
 
 const consoleLogMock = jest.spyOn(console, 'log').mockImplementation()
 

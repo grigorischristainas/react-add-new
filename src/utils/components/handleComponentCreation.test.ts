@@ -2,7 +2,12 @@ import { Command } from 'commander'
 import handleComponentCreation from './handleComponentCreation'
 import createInteractive from './createInteractive'
 import createComponent from './createComponent'
-import { componentName, depthLimit, sandboxDirName, rootPath } from './mocks'
+import {
+    componentName,
+    depthLimit,
+    sandboxDirName,
+    rootPath,
+} from '../../lib/mocks'
 
 jest.spyOn(console, 'log').mockImplementation()
 

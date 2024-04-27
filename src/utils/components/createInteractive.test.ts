@@ -12,7 +12,7 @@ import {
     typesPath,
     depthLimit,
     rootPath,
-} from './mocks'
+} from '../../lib/mocks'
 import {
     mockComponentTemplateBasic,
     mockComponentTemplateFull,

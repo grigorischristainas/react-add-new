@@ -1,10 +1,6 @@
 import * as fs from 'fs'
 import { ExecException, exec } from 'child_process'
-import {
-    componentName,
-    sandboxDirName,
-    targetDirectory,
-} from './utils/components/mocks'
+import { componentName, sandboxDirName, targetDirectory } from './lib/mocks'
 
 jest.mock('inquirer')
 
