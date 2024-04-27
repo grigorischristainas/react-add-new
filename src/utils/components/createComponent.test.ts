@@ -51,25 +51,25 @@ describe('createComponent: Test that util', () => {
             )
         })
 
-        it('should create files correctly with correct content', () => {
+        it('should create files correctly with correct content', async () => {
             expect(
-                fileContainsContent(indexFilePath, mockIndexTemplate)
+                await fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
 
             expect(
-                fileContainsContent(
+                await fileContainsContent(
                     componentFilePath,
                     mockComponentTemplateFull
                 )
             ).toEqual(true)
 
             expect(
-                fileContainsContent(stylesFilePath, mockStylesTemplate)
+                await fileContainsContent(stylesFilePath, mockStylesTemplate)
             ).toEqual(true)
 
-            expect(fileContainsContent(typesPath, mockTypesTemplate)).toEqual(
-                true
-            )
+            expect(
+                await fileContainsContent(typesPath, mockTypesTemplate)
+            ).toEqual(true)
         })
 
         it('should log error message when trying to create component in existing directory', async () => {
@@ -116,11 +116,11 @@ describe('createComponent: Test that util', () => {
             await createComponent(componentName, sandboxDirName, true, false)
 
             expect(
-                fileContainsContent(indexFilePath, mockIndexTemplate)
+                await fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
 
             expect(
-                fileContainsContent(
+                await fileContainsContent(
                     componentFilePath,
                     mockComponentTemplateNoStyles
                 )
@@ -128,9 +128,9 @@ describe('createComponent: Test that util', () => {
 
             expect(fs.existsSync(stylesFilePath)).toEqual(false)
 
-            expect(fileContainsContent(typesPath, mockTypesTemplate)).toEqual(
-                true
-            )
+            expect(
+                await fileContainsContent(typesPath, mockTypesTemplate)
+            ).toEqual(true)
         })
 
         it('should log error message when trying to create component in existing directory', async () => {
@@ -177,18 +177,18 @@ describe('createComponent: Test that util', () => {
             await createComponent(componentName, sandboxDirName, false, true)
 
             expect(
-                fileContainsContent(indexFilePath, mockIndexTemplate)
+                await fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
 
             expect(
-                fileContainsContent(
+                await fileContainsContent(
                     componentFilePath,
                     mockComponentTemplateNoTypes
                 )
             ).toEqual(true)
 
             expect(
-                fileContainsContent(stylesFilePath, mockStylesTemplate)
+                await fileContainsContent(stylesFilePath, mockStylesTemplate)
             ).toEqual(true)
 
             expect(fs.existsSync(typesPath)).toEqual(false)
@@ -238,11 +238,11 @@ describe('createComponent: Test that util', () => {
             await createComponent(componentName, sandboxDirName, true, true)
 
             expect(
-                fileContainsContent(indexFilePath, mockIndexTemplate)
+                await fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
 
             expect(
-                fileContainsContent(
+                await fileContainsContent(
                     componentFilePath,
                     mockComponentTemplateBasic
                 )
