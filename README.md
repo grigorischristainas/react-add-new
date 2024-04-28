@@ -2,10 +2,12 @@
 
 ### ✨ CLI tool to create new React components
 
-A utility for quickly adding new React components. Not configurable for the moment, utilizes predefined templates and styles are generated assuming you are using
-Material UI and styled components.
+A utility for quickly adding new React components. Currently non-configurable, it utilizes predefined templates and requires the following prerequisites:
 
-For the context generation, a Provider component is created, along with the context, and it is exported along with a custom hook for accessing the context value. You can check out similar usages on these great articles:
+-   **TypeScript**: All components are generated in `.ts` or `.tsx` files.
+-   **Material UI** (optional for styling): Styles are generated utilizing Material UI and styled components. However, you can exclude styling from component generation process and use your own styles.
+
+To facilitate context generation, a Provider component is created (e.g., MySuperContextProvider) alongside the context. This component is then exported along with a custom hook designed for accessing the context value (e.g., useMySuperContext). You can check out similar usages of context on these great articles:
 
 https://tkdodo.eu/blog/react-query-and-react-context
 
