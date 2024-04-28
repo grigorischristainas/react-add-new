@@ -44,7 +44,7 @@ const createComponent = async (
             await writeInDirectory(
                 folderPath,
                 fileNames.styles,
-                templates.styles
+                templates?.styles
             )
         }
 
