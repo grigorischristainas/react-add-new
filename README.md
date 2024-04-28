@@ -5,6 +5,12 @@
 A utility for quickly adding new React components. Not configurable for the moment, utilizes predefined templates and styles are generated assuming you are using
 Material UI and styled components.
 
+For the context generation, a Provider component is created, along with the context, and it is exported along with a custom hook for accessing the context value. You can check out similar usages on these great articles:
+
+https://tkdodo.eu/blog/react-query-and-react-context
+
+https://tkdodo.eu/blog/zustand-and-react-context
+
 ## Usage
 
 You can install the package globally using the following command:
@@ -29,13 +35,21 @@ This command will print all the available CLI options. A new component can be cr
 
 #### Interactive mode
 
-You can enter interactive mode using the following command:
+You can enter interactive mode using one of the following commands:
+
+##### Component
 
 ```
 react-add-new component -i
 ```
 
-Terminal prompts will guide you through the component generation process. Component generation path is selected using fuzzy search and you can set the desired depth & path for limiting the depth and root path of sub-folders to scan:
+##### Context
+
+```
+react-add-new context -i
+```
+
+Terminal prompts will guide you through the generation process. Generation path is selected using fuzzy search and you can set the desired depth & path for limiting the depth and root path of sub-folders to scan:
 
 ```
 react-add-new component -i --depthLimit 10 --rootPath src
@@ -45,6 +59,8 @@ Please note that when `-i` command line argument is provided, non-interactive mo
 
 #### Non-interactive mode
 
+##### Component
+
 You can create a component directly in non-interactive mode using the following command:
 
 ```
@@ -52,6 +68,14 @@ react-add-new component -n TestComponent -p components
 ```
 
 You can also provide the oprional arguments `--noStyles` and `--noTypes`, in order to exclude styles & types from generation.
+
+##### Context
+
+You can create a context provider directly in non-interactive mode using the following command:
+
+```
+react-add-new context -n MySuperContext -p context
+```
 
 ## Development
 
