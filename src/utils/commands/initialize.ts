@@ -45,7 +45,7 @@ const initialize = () => {
         )
         .option(
             '-depthLimit, --depthLimit <number>',
-            'Maximum directory depth limit to search for providing component path generation options [interactive mode]',
+            'Maximum directory depth limit to search for providing directory generation suggestions [interactive mode]',
             depthLimitParser
         )
         .option(
