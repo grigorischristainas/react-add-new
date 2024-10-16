@@ -8,13 +8,11 @@ import getFileNames from '../files/getFileNames'
 
 const createComponent = async (
     componentName: string,
-    relativeFolderPath: string,
+    componentPath: string,
     noStyles: boolean,
     noTypes: boolean
 ) => {
-    const currentDirectory = process.cwd()
-    const targetDirectory = path.join(relativeFolderPath, componentName)
-    const folderPath = path.join(currentDirectory, targetDirectory)
+    const folderPath = path.resolve(componentPath, componentName)
 
     const templates = getTemplates(
         componentName,
