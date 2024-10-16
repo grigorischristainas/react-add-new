@@ -6,7 +6,7 @@
     "scripts": {
         "test": "jest --runInBand",
         "clean": "rimraf dist",
-        "build": "npm run clean && esbuild --bundle src/index.ts --platform=node --outfile=dist/index.js --packages=external",
+        "build": "npm run clean && esbuild src/index.ts src/cli.ts --bundle --platform=node --outdir=dist --packages=external",
         "prepublishOnly": "npm run build"
     },
     "repository": {
@@ -35,7 +35,7 @@
         "typescript": "^5.4.2"
     },
     "bin": {
-        "react-add-new": "./dist/index.js"
+        "react-add-new": "./dist/cli.js"
     },
     "dependencies": {
         "chalk": "^4.1.2",
