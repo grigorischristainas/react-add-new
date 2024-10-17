@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
 import { logError } from '../logging/logger'
 import createComponent from './createComponent'
+import validateName from '../validators/validateName'
 
 type Answer = {
     name: string
@@ -20,6 +21,7 @@ const createInteractive = async (
                 {
                     name: 'name',
                     message: 'What is your component name?',
+                    validate: (input: string) => validateName(input),
                 },
                 {
                     type: 'fuzzypath',

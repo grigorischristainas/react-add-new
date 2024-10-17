@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
 import { logError } from '../logging/logger'
 import createContext from './createContext'
+import validateName from '../validators/validateName'
 
 type Answer = {
     name: string
@@ -17,6 +18,7 @@ const createInteractive = async (
             {
                 name: 'name',
                 message: 'What is your context name? (e.g., MySuperContext)',
+                validate: (input: string) => validateName(input),
             },
             {
                 type: 'fuzzypath',
