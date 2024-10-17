@@ -4,6 +4,7 @@ import chalk from 'chalk'
 import handleComponentCreation from '../components/handleComponentCreation'
 import depthLimitParser from './depthLimitParser'
 import handleContextCreation from '../context/handleContextCreation'
+import { version } from '../../../package.json'
 
 const initialize = () => {
     const program = new Command()
@@ -11,7 +12,7 @@ const initialize = () => {
     program
         .name('react-add-new')
         .description('A CLI tool to create new React components and hooks')
-        .version('0.1.0')
+        .version(version)
 
     program
         .command('hi')
