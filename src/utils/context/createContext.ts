@@ -6,13 +6,8 @@ import { logError, logNewComponentSuccess } from '../logging/logger'
 import getTemplates from '../files/getTemplates'
 import getFileNames from '../files/getFileNames'
 
-const createContext = async (
-    componentName: string,
-    relativeFolderPath: string
-) => {
-    const currentDirectory = process.cwd()
-    const targetDirectory = path.join(relativeFolderPath, componentName)
-    const folderPath = path.join(currentDirectory, targetDirectory)
+const createContext = async (componentName: string, contextPath: string) => {
+    const folderPath = path.resolve(contextPath, componentName)
 
     const templates = getTemplates(componentName, 'context')
     const fileNames = getFileNames(componentName)

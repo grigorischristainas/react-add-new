@@ -14,7 +14,7 @@ export const logNewComponentInit = (
         chalk.cyan(`\n✨ Generating new ${type} `) +
             chalk.magenta.bold(`${name} `) +
             chalk.cyan('in ') +
-            chalk.magenta.bold(`./${path}`) +
+            chalk.magenta.bold(`${path}`) +
             chalk.cyan('...')
     )
 }
