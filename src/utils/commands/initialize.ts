@@ -26,7 +26,7 @@ const initialize = () => {
         .option('-n, --name <string>', 'Component name [non-interactive mode]')
         .option(
             '-p, --path <string>',
-            'Component path, relative to current command execution path [non-interactive mode]'
+            'Component path to place the new component [non-interactive mode]'
         )
         .option(
             '--noTypes',
@@ -88,7 +88,7 @@ const initialize = () => {
         .option('-n, --name <string>', 'Context name [non-interactive mode]')
         .option(
             '-p, --path <string>',
-            'Context path, relative to current command execution path [non-interactive mode]'
+            'Context path, to place the new context [non-interactive mode]'
         )
         .option(
             '-i, --interactive',

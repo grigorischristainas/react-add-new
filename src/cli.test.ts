@@ -44,7 +44,7 @@ describe('Test the cli commands', () => {
         )
 
         expect(result.stdout).toEqual(
-            `\n✨ Generating new component ${componentName} in ./${sandboxDirName}...\n` +
+            `\n✨ Generating new component ${componentName} in ${sandboxDirName}...\n` +
                 '\n' +
                 'Component has been successfully created!\n' +
                 '\n' +
@@ -58,7 +58,7 @@ describe('Test the cli commands', () => {
         )
 
         expect(result.stdout).toEqual(
-            `\n✨ Generating new component ${componentName} in ./${sandboxDirName}...\n` +
+            `\n✨ Generating new component ${componentName} in ${sandboxDirName}...\n` +
                 '\n' +
                 'Looks like component already exists, please try deleting its directory and try again.' +
                 '\n'
