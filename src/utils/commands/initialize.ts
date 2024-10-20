@@ -4,6 +4,7 @@ import chalk from 'chalk'
 import handleComponentCreation from '../components/handleComponentCreation'
 import depthLimitParser from './depthLimitParser'
 import handleContextCreation from '../context/handleContextCreation'
+import nameParser from './nameParser'
 
 const initialize = () => {
     const program = new Command()
@@ -23,7 +24,11 @@ const initialize = () => {
     program
         .command('component')
         .description('Generate new component ✨')
-        .option('-n, --name <string>', 'Component name [non-interactive mode]')
+        .option(
+            '-n, --name <string>',
+            'Component name [non-interactive mode]',
+            nameParser
+        )
         .option(
             '-p, --path <string>',
             'Component path to place the new component [non-interactive mode]'
@@ -85,7 +90,11 @@ const initialize = () => {
     program
         .command('context')
         .description('Generate new context ✨')
-        .option('-n, --name <string>', 'Context name [non-interactive mode]')
+        .option(
+            '-n, --name <string>',
+            'Context name [non-interactive mode]',
+            nameParser
+        )
         .option(
             '-p, --path <string>',
             'Context path, to place the new context [non-interactive mode]'
