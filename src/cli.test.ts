@@ -13,7 +13,7 @@ const cli = (args: string) => {
         stdout: string
         stderr: string
     }>((resolve) => {
-        exec(`ts-node src/index.ts ${args}`, (error, stdout, stderr) => {
+        exec(`ts-node src/cli.ts ${args}`, (error, stdout, stderr) => {
             resolve({
                 code: error && error.code ? error.code : 0,
                 error,
