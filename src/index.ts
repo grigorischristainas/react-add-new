@@ -1,4 +1,2 @@
-#! /usr/bin/env node
-import initialize from './utils/commands/initialize'
-
-initialize()
+export { default as createComponent } from './utils/components/createComponent'
+export { default as createContext } from './utils/context/createContext'
