@@ -2,6 +2,7 @@ import inquirer from 'inquirer'
 import { logError } from '../logging/logger'
 import createContext from './createContext'
 import validateName from '../validators/validateName'
+import handleCreateStatus from '../logging/handleCreateStatus'
 
 type Answer = {
     name: string
@@ -35,7 +36,9 @@ const createInteractive = async (
             },
         ])
 
-        await createContext(name, path)
+        const createStatus = await createContext(name, path)
+
+        handleCreateStatus(createStatus)
     } catch (error) {
         logError(
             'Something went wrong during context generation, please try again.'

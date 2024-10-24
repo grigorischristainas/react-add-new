@@ -1,7 +1,12 @@
 import { Command } from 'commander'
-import { logNewComponentInit } from '../logging/logger'
+import {
+    logError,
+    logNewComponentInit,
+    logNewComponentSuccess,
+} from '../logging/logger'
 import createComponent from './createComponent'
 import createInteractive from './createInteractive'
+import handleCreateStatus from '../logging/handleCreateStatus'
 
 export type HandleComponentCreationProps = {
     path: string | undefined
@@ -31,7 +36,15 @@ const handleComponentCreation = async ({
 
     if (name && path) {
         logNewComponentInit(name, path)
-        await createComponent(name, path, noStyles, noTypes)
+        const createStatus = await createComponent(
+            name,
+            path,
+            noStyles,
+            noTypes
+        )
+
+        handleCreateStatus(createStatus)
+
         return
     }
 

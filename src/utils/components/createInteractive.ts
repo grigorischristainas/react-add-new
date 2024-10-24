@@ -1,7 +1,8 @@
 import inquirer from 'inquirer'
-import { logError } from '../logging/logger'
+import { logError, logNewComponentSuccess } from '../logging/logger'
 import createComponent from './createComponent'
 import validateName from '../validators/validateName'
+import handleCreateStatus from '../logging/handleCreateStatus'
 
 type Answer = {
     name: string
@@ -49,7 +50,14 @@ const createInteractive = async (
                 },
             ])
 
-        await createComponent(name, path, !withStyles, !withTypes)
+        const createStatus = await createComponent(
+            name,
+            path,
+            !withStyles,
+            !withTypes
+        )
+
+        handleCreateStatus(createStatus)
     } catch (error) {
         logError(
             'Something went wrong during component generation, please try again.'

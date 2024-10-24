@@ -9,7 +9,6 @@ import {
     mockTypesTemplate,
 } from '../../templates/mocks'
 import createComponent from './createComponent'
-import chalk from 'chalk'
 import {
     componentName,
     sandboxDirName,
@@ -25,8 +24,9 @@ const consoleLogMock = jest.spyOn(console, 'log').mockImplementation()
 
 describe('createComponent: Test that util', () => {
     describe('With default extra arguments', () => {
-        beforeAll(() => {
+        beforeAll(async () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
+            await createComponent(componentName, sandboxDirName, false, false)
         })
 
         beforeEach(() => {
@@ -35,20 +35,6 @@ describe('createComponent: Test that util', () => {
 
         afterAll(() => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
-        })
-
-        it('should log successful messages', async () => {
-            await createComponent(componentName, sandboxDirName, false, false)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(2)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.green('\nComponent has been successfully created!')
-            )
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.cyan('\nHappy coding 🎉')
-            )
         })
 
         it('should create files correctly with correct content', async () => {
@@ -71,23 +57,12 @@ describe('createComponent: Test that util', () => {
                 await fileContainsContent(typesPath, mockTypesTemplate)
             ).toEqual(true)
         })
-
-        it('should log error message when trying to create component in existing directory', async () => {
-            await createComponent(componentName, sandboxDirName, false, false)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(1)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.red(
-                    '\nLooks like component already exists, please try deleting its directory and try again.'
-                )
-            )
-        })
     })
 
     describe('With styles excluded', () => {
-        beforeAll(() => {
+        beforeAll(async () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
+            await createComponent(componentName, sandboxDirName, true, false)
         })
 
         beforeEach(() => {
@@ -98,23 +73,7 @@ describe('createComponent: Test that util', () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
         })
 
-        it('should log successful messages', async () => {
-            await createComponent(componentName, sandboxDirName, true, false)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(2)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.green('\nComponent has been successfully created!')
-            )
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.cyan('\nHappy coding 🎉')
-            )
-        })
-
         it('should create files correctly with correct content', async () => {
-            await createComponent(componentName, sandboxDirName, true, false)
-
             expect(
                 await fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
@@ -132,23 +91,12 @@ describe('createComponent: Test that util', () => {
                 await fileContainsContent(typesPath, mockTypesTemplate)
             ).toEqual(true)
         })
-
-        it('should log error message when trying to create component in existing directory', async () => {
-            await createComponent(componentName, sandboxDirName, false, false)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(1)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.red(
-                    '\nLooks like component already exists, please try deleting its directory and try again.'
-                )
-            )
-        })
     })
 
     describe('With types excluded', () => {
-        beforeAll(() => {
+        beforeAll(async () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
+            await createComponent(componentName, sandboxDirName, false, true)
         })
 
         beforeEach(() => {
@@ -159,23 +107,7 @@ describe('createComponent: Test that util', () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
         })
 
-        it('should log successful messages', async () => {
-            await createComponent(componentName, sandboxDirName, false, true)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(2)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.green('\nComponent has been successfully created!')
-            )
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.cyan('\nHappy coding 🎉')
-            )
-        })
-
         it('should create files correctly with correct content', async () => {
-            await createComponent(componentName, sandboxDirName, false, true)
-
             expect(
                 await fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
@@ -193,23 +125,12 @@ describe('createComponent: Test that util', () => {
 
             expect(fs.existsSync(typesPath)).toEqual(false)
         })
-
-        it('should log error message when trying to create component in existing directory', async () => {
-            await createComponent(componentName, sandboxDirName, false, false)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(1)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.red(
-                    '\nLooks like component already exists, please try deleting its directory and try again.'
-                )
-            )
-        })
     })
 
     describe('With types and styles excluded', () => {
-        beforeAll(() => {
+        beforeAll(async () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
+            await createComponent(componentName, sandboxDirName, true, true)
         })
 
         beforeEach(() => {
@@ -220,23 +141,7 @@ describe('createComponent: Test that util', () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
         })
 
-        it('should log successful messages', async () => {
-            await createComponent(componentName, sandboxDirName, true, true)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(2)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.green('\nComponent has been successfully created!')
-            )
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.cyan('\nHappy coding 🎉')
-            )
-        })
-
         it('should create files correctly with correct content', async () => {
-            await createComponent(componentName, sandboxDirName, true, true)
-
             expect(
                 await fileContainsContent(indexFilePath, mockIndexTemplate)
             ).toEqual(true)
@@ -251,18 +156,6 @@ describe('createComponent: Test that util', () => {
             expect(fs.existsSync(stylesFilePath)).toEqual(false)
 
             expect(fs.existsSync(typesPath)).toEqual(false)
-        })
-
-        it('should log error message when trying to create component in existing directory', async () => {
-            await createComponent(componentName, sandboxDirName, false, false)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(1)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.red(
-                    '\nLooks like component already exists, please try deleting its directory and try again.'
-                )
-            )
         })
     })
 })

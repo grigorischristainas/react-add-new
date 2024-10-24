@@ -19,11 +19,15 @@ const mockedCreateInteractive = createInteractive as jest.MockedFunction<
 >
 
 jest.mock('./createContext')
-const mockedCreateComponent = createComponent as jest.MockedFunction<
+const mockedCreateContext = createComponent as jest.MockedFunction<
     typeof createComponent
 >
 
 describe('handleComponentCreation: Test that util', () => {
+    beforeAll(() => {
+        mockedCreateContext.mockResolvedValue({ status: 'OK', msg: '' })
+    })
+
     it('should log error if no correct arguments are passed', () => {
         const newProgram = new Command()
         const mockedProgram = jest.mocked(newProgram)
@@ -75,6 +79,6 @@ describe('handleComponentCreation: Test that util', () => {
         })
 
         expect(mockedProgram.error).not.toHaveBeenCalled()
-        expect(mockedCreateComponent).toHaveBeenCalled()
+        expect(mockedCreateContext).toHaveBeenCalled()
     })
 })

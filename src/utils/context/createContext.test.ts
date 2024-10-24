@@ -1,5 +1,4 @@
 import * as fs from 'fs'
-import chalk from 'chalk'
 import {
     contextFilePath,
     contextIndexFilePath,
@@ -20,8 +19,10 @@ const consoleLogMock = jest.spyOn(console, 'log').mockImplementation()
 
 describe('createComponent: Test that util', () => {
     describe('With default extra arguments', () => {
-        beforeAll(() => {
+        beforeAll(async () => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
+
+            await createContext(contextName, sandboxDirName)
         })
 
         beforeEach(() => {
@@ -30,20 +31,6 @@ describe('createComponent: Test that util', () => {
 
         afterAll(() => {
             fs.rmSync(targetDirectory, { recursive: true, force: true })
-        })
-
-        it('should log successful messages', async () => {
-            await createContext(contextName, sandboxDirName)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(2)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.green('\nContext has been successfully created!')
-            )
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.cyan('\nHappy coding 🎉')
-            )
         })
 
         it('should create files correctly with correct content', async () => {
@@ -64,18 +51,6 @@ describe('createComponent: Test that util', () => {
                     mockContextTypesTemplate
                 )
             ).toEqual(true)
-        })
-
-        it('should log error message when trying to create context in existing directory', async () => {
-            await createContext(contextName, sandboxDirName)
-
-            expect(consoleLogMock).toHaveBeenCalledTimes(1)
-
-            expect(consoleLogMock).toHaveBeenCalledWith(
-                chalk.red(
-                    '\nLooks like component already exists, please try deleting its directory and try again.'
-                )
-            )
         })
     })
 })

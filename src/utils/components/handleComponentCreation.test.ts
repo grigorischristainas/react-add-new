@@ -24,6 +24,10 @@ const mockedCreateComponent = createComponent as jest.MockedFunction<
 >
 
 describe('handleComponentCreation: Test that util', () => {
+    beforeAll(() => {
+        mockedCreateComponent.mockResolvedValue({ status: 'OK', msg: '' })
+    })
+
     it('should log error if no correct arguments are passed', () => {
         const newProgram = new Command()
         const mockedProgram = jest.mocked(newProgram)
