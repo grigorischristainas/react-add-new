@@ -2,6 +2,7 @@ import { Command } from 'commander'
 import { logNewComponentInit } from '../logging/logger'
 import createInteractive from './createInteractive'
 import createContext from './createContext'
+import handleCreateStatus from '../logging/handleCreateStatus'
 
 export type HandleContextCreationProps = {
     path: string | undefined
@@ -27,7 +28,10 @@ const handleContextCreation = async ({
 
     if (name && path) {
         logNewComponentInit(name, path, 'context')
-        await createContext(name, path)
+        const createStatus = await createContext(name, path)
+
+        handleCreateStatus(createStatus)
+
         return
     }
 

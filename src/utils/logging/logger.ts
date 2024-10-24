@@ -19,25 +19,11 @@ export const logNewComponentInit = (
     )
 }
 
-export const logError = (
-    err: string | unknown,
-    type: ElementType = 'component'
-) => {
-    const errorToLog =
-        typeof err === 'string'
-            ? err
-            : `Something went wrong during ${type} generation, please try again.`
-
-    console.log(chalk.red(`\n${errorToLog}`))
+export const logError = (err: string, type: ElementType = 'component') => {
+    console.log(chalk.red(`\n${err}`))
 }
 
-export const logNewComponentSuccess = (type: ElementType = 'component') => {
-    console.log(
-        chalk.green(
-            `\n${
-                type === 'component' ? 'Component' : 'Context'
-            } has been successfully created!`
-        )
-    )
+export const logNewComponentSuccess = (msg: string) => {
+    console.log(chalk.green(`\n${msg}`))
     console.log(chalk.cyan('\nHappy coding 🎉'))
 }

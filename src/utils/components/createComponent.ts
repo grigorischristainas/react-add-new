@@ -2,16 +2,16 @@ import * as path from 'path'
 import componentExists from '../files/componentExists'
 import createDirectory from '../files/createDirectory'
 import writeInDirectory from '../files/writeInDirectory'
-import { logError, logNewComponentSuccess } from '../logging/logger'
 import getTemplates from '../files/getTemplates'
 import getFileNames from '../files/getFileNames'
+import { CreateStatus } from '../../lib/types'
 
 const createComponent = async (
     componentName: string,
     componentPath: string,
     noStyles: boolean,
     noTypes: boolean
-) => {
+): Promise<CreateStatus> => {
     const folderPath = path.resolve(componentPath, componentName)
 
     const templates = getTemplates(
@@ -46,9 +46,15 @@ const createComponent = async (
             )
         }
 
-        logNewComponentSuccess()
+        return { status: 'OK', msg: 'Component has been successfully created!' }
     } catch (err) {
-        logError(err)
+        return {
+            status: 'ERR',
+            msg:
+                typeof err === 'string'
+                    ? err
+                    : `Something went wrong during component generation, please try again.`,
+        }
     }
 }
 
